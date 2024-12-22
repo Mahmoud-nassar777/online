@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="css/online.css">
+    <title>online</title>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="title">offline Now</h2>
+        <ul>
+            <li>Checking the connection</li>
+            <li>Checking the proxy and the firewall</li>
+            <li>Running Windows Network Diagnostics</li>
+        </ul>
+        <button class="reload">Reload</button>
+    </div>
+
+    <script>
+        let title = document.querySelector('.title');
+        let ul = document.querySelector('ul');
+        let reload = document.querySelector('.reload');
+
+        window.onload = function() {
+            if (window.navigator.onLine) {
+                online();
+            } else {
+                offline();
+            }
+        };
+        
+        window.addEventListener("online", function() {
+            online();
+        });
+        
+        window.addEventListener("offline", function() {
+            offline();
+        });
+
+        reload.onclick = function() {
+            window.location.reload();
+        };
+
+        function online() {
+            title.innerHTML = 'Online Now';
+            title.style.color = 'green';
+            ul.classList.add('hide');
+            reload.classList.add('hide');
+        }
+
+        function offline() {
+            title.innerHTML = 'OFFline Now';
+            title.style.color = '#666';
+            ul.classList.remove('hide');
+            reload.classList.remove('hide');
+        }
+    </script>
+</body>
+</html>
